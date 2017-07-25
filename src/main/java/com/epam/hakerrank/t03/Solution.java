@@ -1,8 +1,6 @@
 package com.epam.hakerrank.t03;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Solution {
 
@@ -32,7 +30,30 @@ public class Solution {
     }
 
     public boolean checkMagazineContainsRansom(List<String> magazineWords, List<String> ransomWords) {
-        // TODO: 25/07/17
-        throw new UnsupportedOperationException();
+        Collections.sort(magazineWords);
+        Collections.sort(ransomWords);
+
+        Iterator<String> ransomIterator = ransomWords.iterator();
+        while (ransomIterator.hasNext()) {
+            String ransomWord = ransomIterator.next();
+
+            Iterator<String> magazineIterator = magazineWords.iterator();
+
+            while (magazineIterator.hasNext()){
+                String magazineWord = magazineIterator.next();
+
+                int comparationResult = ransomWord.compareTo(magazineWord);
+
+                if (comparationResult < 0){
+                    break;
+                } else if (comparationResult == 0){
+                    ransomIterator.remove();
+                    magazineIterator.remove();
+                    break;
+                }
+            }
+        }
+
+        return ransomWords.isEmpty();
     }
 }
