@@ -1,5 +1,6 @@
 package com.epam.hakerrank.t02;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -23,8 +24,34 @@ public class Solution {
         checkStringSize(first);
         checkStringSize(second);
 
-        // TODO: 25/07/17
-        throw new UnsupportedOperationException();
+        char[] firstChars = first.toCharArray();
+        char[] secondChars = second.toCharArray();
+
+        Arrays.sort(firstChars);
+        Arrays.sort(secondChars);
+
+        int result = 0;
+        int i = 0;
+        int j = 0;
+        for (; i < firstChars.length && j < secondChars.length; ) {
+            char a = firstChars[i];
+            char b = secondChars[j];
+
+            if (a < b) {
+                j--;
+                result++;
+            } else if (a > b) {
+                i--;
+                result++;
+            }
+
+            i++;
+            j++;
+        }
+
+        result += firstChars.length - i + secondChars.length - j;
+
+        return result;
     }
 
     private static void checkStringSize(String word) {
@@ -34,7 +61,7 @@ public class Solution {
             );
         }
 
-        if (word.length() > MAX_WORD_LENGTH){
+        if (word.length() > MAX_WORD_LENGTH) {
             throw new IllegalArgumentException(
                     String.format("Word length [%d] can't be more than %d",
                             word.length(),
