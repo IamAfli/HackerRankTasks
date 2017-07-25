@@ -1,5 +1,6 @@
 package com.epam.hakerrank.t02;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Solution {
@@ -14,7 +15,29 @@ public class Solution {
     }
 
     public static int numberNeeded(String first, String second) {
+        Objects.requireNonNull(first);
+        Objects.requireNonNull(second);
+
+        checkStringSize(first);
+        checkStringSize(second);
+
         // TODO: 25/07/17
         throw new UnsupportedOperationException();
+    }
+
+    private static void checkStringSize(String word) {
+        if (word.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Word cant be empty"
+            );
+        }
+
+        if (word.length() > 10_000){
+            throw new IllegalArgumentException(
+                    String.format("Word length [%d] can't be more than %d",
+                            word.length(),
+                            10_000)
+            );
+        }
     }
 }
