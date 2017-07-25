@@ -25,7 +25,7 @@ public class SolutionTest {
 
         fillArray(array_size);
 
-        app.performArrayLeftRotate(array, 4);
+        app.performArrayLeftRotate(array, arrayShift);
 
         int[] expectedArray = new int[5];
         expectedArray[0] = 5;
@@ -33,6 +33,21 @@ public class SolutionTest {
         expectedArray[2] = 2;
         expectedArray[3] = 3;
         expectedArray[4] = 4;
+
+        assertThat(array, is(expectedArray));
+    }
+
+    @Test
+    public void testLeftRotateMethodWorkWithSingleElementArray() {
+        int array_size = 1;
+        int arrayShift = 1;
+
+        fillArray(array_size);
+
+        app.performArrayLeftRotate(array, arrayShift);
+
+        int[] expectedArray = new int[1];
+        expectedArray[0] = 1;
 
         assertThat(array, is(expectedArray));
     }
