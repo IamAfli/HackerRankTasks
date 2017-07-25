@@ -37,6 +37,14 @@ public class SolutionTest {
         assertThat(array, is(expectedArray));
     }
 
+    private void fillArray(int array_size) {
+        array = new int[array_size];
+
+        IntStream.range(0, array_size).forEach(
+                i -> array[i] = i + 1
+        );
+    }
+
     @Test
     public void testLeftRotateMethodWorkWithSingleElementArray() {
         int array_size = 1;
@@ -52,11 +60,16 @@ public class SolutionTest {
         assertThat(array, is(expectedArray));
     }
 
-    private void fillArray(int array_size) {
-        array = new int[array_size];
+    @Test(expected = NullPointerException.class)
+    public void testThatLeftRotateMethodThrowsNPEWhenArrayIsNull(){
+        app.performArrayLeftRotate(null, 1);
+    }
 
-        IntStream.range(0, array_size).forEach(
-                i -> array[i] = i + 1
-        );
+    @Test(expected = IllegalArgumentException.class)
+    public void testThatLeftRotateMethodThrowsExceptionWhenArrayShiftIsGreaterThanArrayLength(){
+        int array_size = 5;
+        fillArray(array_size);
+
+        app.performArrayLeftRotate(array, array_size + 1);
     }
 }
