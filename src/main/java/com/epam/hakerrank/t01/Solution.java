@@ -1,5 +1,6 @@
 package com.epam.hakerrank.t01;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Solution {
@@ -17,6 +18,15 @@ public class Solution {
     }
 
     public void performArrayLeftRotate(int[] array, int arrayShift) {
+        Objects.requireNonNull(array);
+        if (arrayShift > array.length){
+            throw new IllegalArgumentException(
+                    String.format("Array shift [%d] can't be greater than array length [%d]",
+                            arrayShift,
+                            array.length)
+            );
+        }
+
         for (int i = 0; i < arrayShift; i++) {
             shiftLeftByOne(array);
         }
