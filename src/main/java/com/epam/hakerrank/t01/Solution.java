@@ -17,6 +17,14 @@ public class Solution {
     }
 
     public void performArrayLeftRotate(int[] array, int arrayShift) {
+        for (int i = 0; i < arrayShift; i++) {
+            shiftLeftByOne(array);
+        }
+    }
 
+    private void shiftLeftByOne(int[] array) {
+        int tmp = array[0];
+        System.arraycopy(array, 1, array, 0, array.length - 1);
+        array[array.length - 1] = tmp;
     }
 }
