@@ -12,48 +12,41 @@ public class Solution {
         int wordsInMagazineNumber = in.nextInt();
         int wordsInRansomNumber = in.nextInt();
 
-        List<String> magazineWords = getWordsFromKeyboard(in, wordsInMagazineNumber);
-        List<String> ransomWords = getWordsFromKeyboard(in, wordsInRansomNumber);
+        Map<String, Integer> magazineWords = getWordsFromKeyboard(in, wordsInMagazineNumber);
+        Map<String, Integer> ransomWords = getWordsFromKeyboard(in, wordsInRansomNumber);
 
         boolean result = app.checkMagazineContainsRansom(magazineWords, ransomWords);
 
         System.out.println(result ? "Yes" : "No");
     }
 
-    private static List<String> getWordsFromKeyboard(Scanner in, int numberOfWords) {
-        List<String> words = new LinkedList<>();
+    private static Map<String, Integer> getWordsFromKeyboard(Scanner in, int numberOfWords) {
+        Map<String, Integer> words = new HashMap<>();
         for (int i = 0; i < numberOfWords; i++) {
-            words.add(in.next());
+            String word = in.next();
+
+            Integer wordCount = words.putIfAbsent(word, 1);
+
+            if (wordCount != null) {
+                words.put(word, wordCount + 1);
+            }
         }
 
         return words;
     }
 
-    public boolean checkMagazineContainsRansom(List<String> magazineWords, List<String> ransomWords) {
-        Collections.sort(magazineWords);
-        Collections.sort(ransomWords);
+    public boolean checkMagazineContainsRansom(Map<String, Integer> magazineWords, Map<String, Integer> ransomWords) {
+        for (Map.Entry<String, Integer> ransomPair : ransomWords.entrySet()) {
+            String ransomWord = ransomPair.getKey();
+            int ransomWordCount = ransomPair.getValue();
 
-        Iterator<String> ransomIterator = ransomWords.iterator();
-        while (ransomIterator.hasNext()) {
-            String ransomWord = ransomIterator.next();
+            Integer magazineCount = magazineWords.get(ransomWord);
 
-            Iterator<String> magazineIterator = magazineWords.iterator();
-
-            while (magazineIterator.hasNext()){
-                String magazineWord = magazineIterator.next();
-
-                int comparationResult = ransomWord.compareTo(magazineWord);
-
-                if (comparationResult < 0){
-                    break;
-                } else if (comparationResult == 0){
-                    ransomIterator.remove();
-                    magazineIterator.remove();
-                    break;
-                }
+            if (magazineCount == null || magazineCount < ransomWordCount){
+                return false;
             }
         }
 
-        return ransomWords.isEmpty();
+        return true;
     }
 }
