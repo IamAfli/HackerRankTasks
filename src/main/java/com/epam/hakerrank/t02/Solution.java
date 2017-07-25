@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Solution {
 
+    public static final int MAX_WORD_LENGTH = 10_000;
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
@@ -32,11 +34,11 @@ public class Solution {
             );
         }
 
-        if (word.length() > 10_000){
+        if (word.length() > MAX_WORD_LENGTH){
             throw new IllegalArgumentException(
                     String.format("Word length [%d] can't be more than %d",
                             word.length(),
-                            10_000)
+                            MAX_WORD_LENGTH)
             );
         }
     }

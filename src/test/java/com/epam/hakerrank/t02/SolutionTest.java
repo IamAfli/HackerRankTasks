@@ -91,7 +91,7 @@ public class SolutionTest {
     @Test(expected = IllegalArgumentException.class)
     public void testNumberNeededThrowsExceptionIfFirstStringIsTooLong(){
         StringBuilder firstStringSB = new StringBuilder();
-        for (int i = 0; i < 10_001; i++) {
+        for (int i = 0; i < Solution.MAX_WORD_LENGTH + 1; i++) {
             firstStringSB.append("a");
         }
 
@@ -104,7 +104,7 @@ public class SolutionTest {
     @Test(expected = IllegalArgumentException.class)
     public void testNumberNeededThrowsExceptionIfSecondStringIsTooLong(){
         StringBuilder secondStringSB = new StringBuilder();
-        for (int i = 0; i < 10_001; i++) {
+        for (int i = 0; i < Solution.MAX_WORD_LENGTH + 1; i++) {
             secondStringSB.append("a");
         }
 
