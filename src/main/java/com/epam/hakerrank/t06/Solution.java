@@ -6,18 +6,17 @@ import java.util.Stack;
 public class Solution {
     public static class MyQueue<T> {
         Stack<T> stackNewestOnTop = new Stack<>();
-        Stack<T> stackOldestOnTop = new Stack<>();
 
         public void enqueue(T value) { // Push onto newest stack
-            throw new UnsupportedOperationException();
+            stackNewestOnTop.push(value);
         }
 
         public T peek() {
-            throw new UnsupportedOperationException();
+            return stackNewestOnTop.get(0);
         }
 
         public T dequeue() {
-            throw new UnsupportedOperationException();
+            return stackNewestOnTop.remove(0);
         }
     }
 

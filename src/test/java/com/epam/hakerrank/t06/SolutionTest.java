@@ -12,37 +12,39 @@ public class SolutionTest {
     private MyQueue<Integer> queue;
 
     @Before
-    public void init(){
+    public void init() {
         queue = new MyQueue<>();
     }
 
     @Test
-    public void testEnqueAndPeek(){
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
-
-        assertThat(queue.peek(), is(1));
+    public void testEnqueAndPeek() {
+        for (int i = 0; i < 10; i++) {
+            queue.enqueue(i);
+            assertThat(queue.peek(), is(0));
+        }
     }
 
     @Test
-    public void testDequeRemovesElements(){
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
+    public void testDequeRemovesElements() {
+        for (int i = 0; i < 10; i++) {
+            queue.enqueue(i);
+        }
 
-        queue.dequeue();
-        queue.dequeue();
+        for (int i = 0; i < 9; i++) {
+            queue.dequeue();
+        }
 
-        assertThat(queue.peek(), is(3));
+        assertThat(queue.peek(), is(9));
     }
 
     @Test
-    public void testDequeReturnsElements(){
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
+    public void testDequeReturnsElements() {
+        for (int i = 0; i < 10; i++) {
+            queue.enqueue(i);
+        }
 
-        assertThat(queue.dequeue(), is(1));
+        for (int i = 0; i < 10; i++) {
+            assertThat(queue.dequeue(), is(i));
+        }
     }
 }
