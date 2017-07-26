@@ -1,5 +1,8 @@
 package com.epam.hakerrank.t04;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class CustomLinkedList {
     public class Node {
         int data;
@@ -27,10 +30,27 @@ public class CustomLinkedList {
         public void setNext(Node next) {
             this.next = next;
         }
+
+        @Override
+        public int hashCode() {
+            return data;
+        }
     }
 
     public boolean hasCycle(Node head) {
-        // TODO: 26/07/17
-        throw new UnsupportedOperationException();
+        Set<Node> passedNodes = new HashSet<>();
+
+        Node current = head;
+
+        while (current != null) {
+            if (!passedNodes.contains(current)) {
+                passedNodes.add(current);
+                current = current.next;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
