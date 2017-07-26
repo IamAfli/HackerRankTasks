@@ -6,17 +6,36 @@ import java.util.Stack;
 public class Solution {
     public static class MyQueue<T> {
         Stack<T> stackNewestOnTop = new Stack<>();
+        Stack<T> stackOldestOnTop = new Stack<>();
 
         public void enqueue(T value) { // Push onto newest stack
             stackNewestOnTop.push(value);
         }
 
         public T peek() {
-            return stackNewestOnTop.get(0);
+            if (!stackOldestOnTop.isEmpty()){
+                return stackOldestOnTop.peek();
+            } else {
+                fillOldestOnTopStack();
+            }
+
+            return stackOldestOnTop.peek();
         }
 
         public T dequeue() {
-            return stackNewestOnTop.remove(0);
+            if (!stackOldestOnTop.isEmpty()){
+                return stackOldestOnTop.pop();
+            } else {
+                fillOldestOnTopStack();
+            }
+
+            return stackOldestOnTop.pop();
+        }
+
+        private void fillOldestOnTopStack() {
+            while (!stackNewestOnTop.isEmpty()){
+                stackOldestOnTop.push(stackNewestOnTop.pop());
+            }
         }
     }
 
