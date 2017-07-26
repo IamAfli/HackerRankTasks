@@ -5,6 +5,13 @@ public class CustomLinkedList {
         int data;
         Node next;
 
+        public Node() {
+        }
+
+        public Node(int data) {
+            this.data = data;
+        }
+
         public int getData() {
             return data;
         }
@@ -23,6 +30,7 @@ public class CustomLinkedList {
     }
 
     public boolean hasCycle(Node head) {
-        return false;
+        // TODO: 26/07/17
+        throw new UnsupportedOperationException();
     }
 }
