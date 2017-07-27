@@ -15,8 +15,27 @@ public class CustomBinarySearchTree {
     }
 
     boolean checkBST(Node root) {
-        // TODO: 27/07/17
-        throw new UnsupportedOperationException();
+        if (root == null){
+            return true;
+        }
+
+        boolean isLeftATree = false;
+        if (root.left != null){
+            if (root.left.data >= root.data){
+                return false;
+            }
+        }
+        isLeftATree = checkBST(root.left);
+
+        boolean isRightATree = false;
+        if (root.right != null){
+            if (root.right.data <= root.data){
+                return false;
+            }
+        }
+        isRightATree = checkBST(root.right);
+
+        return isLeftATree && isRightATree;
     }
 
 }
