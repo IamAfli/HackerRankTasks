@@ -1,0 +1,15 @@
+package com.epam.hakerrank.t07;
+
+public class CustomBinarySearchTree {
+    class Node {
+        int data;
+        Node left;
+        Node right;
+    }
+
+    boolean checkBST(Node root) {
+        // TODO: 27/07/17
+        throw new UnsupportedOperationException();
+    }
+
+}
