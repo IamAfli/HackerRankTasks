@@ -5,6 +5,13 @@ public class CustomBinarySearchTree {
         int data;
         Node left;
         Node right;
+
+        public Node() {
+        }
+
+        public Node(int data) {
+            this.data = data;
+        }
     }
 
     boolean checkBST(Node root) {
