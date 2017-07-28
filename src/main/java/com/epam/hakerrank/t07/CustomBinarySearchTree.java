@@ -1,13 +1,13 @@
 package com.epam.hakerrank.t07;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomBinarySearchTree {
     class Node {
         int data;
         Node left;
         Node right;
-
-        public Node() {
-        }
 
         public Node(int data) {
             this.data = data;
@@ -15,27 +15,28 @@ public class CustomBinarySearchTree {
     }
 
     boolean checkBST(Node root) {
-        if (root == null){
-            return true;
-        }
+        List<Node> nodes = new ArrayList<>();
 
-        boolean isLeftATree = false;
-        if (root.left != null){
-            if (root.left.data >= root.data){
+        fillNodes(root, nodes);
+
+        for (int i = 0; i < nodes.size() - 1; i++) {
+            if (nodes.get(i).data >= nodes.get(i + 1).data) {
                 return false;
             }
         }
-        isLeftATree = checkBST(root.left);
 
-        boolean isRightATree = false;
-        if (root.right != null){
-            if (root.right.data <= root.data){
-                return false;
-            }
-        }
-        isRightATree = checkBST(root.right);
-
-        return isLeftATree && isRightATree;
+        return true;
     }
 
+    private void fillNodes(Node root, List<Node> nodes) {
+        if (root == null) {
+            return;
+        }
+
+        fillNodes(root.left, nodes);
+
+        nodes.add(root);
+
+        fillNodes(root.right, nodes);
+    }
 }
