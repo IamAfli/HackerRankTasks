@@ -15,12 +15,12 @@ public class CustomBinarySearchTree {
     }
 
     boolean checkBST(Node root) {
-        List<Node> nodes = new ArrayList<>();
+        List<Node> iterableNodes = new ArrayList<>();
 
-        fillNodes(root, nodes);
+        fillIterableNodes(root, iterableNodes);
 
-        for (int i = 0; i < nodes.size() - 1; i++) {
-            if (nodes.get(i).data >= nodes.get(i + 1).data) {
+        for (int i = 0; i < iterableNodes.size() - 1; i++) {
+            if (iterableNodes.get(i).data >= iterableNodes.get(i + 1).data) {
                 return false;
             }
         }
@@ -28,15 +28,15 @@ public class CustomBinarySearchTree {
         return true;
     }
 
-    private void fillNodes(Node root, List<Node> nodes) {
+    private void fillIterableNodes(Node root, List<Node> iterableNodes) {
         if (root == null) {
             return;
         }
 
-        fillNodes(root.left, nodes);
+        fillIterableNodes(root.left, iterableNodes);
 
-        nodes.add(root);
+        iterableNodes.add(root);
 
-        fillNodes(root.right, nodes);
+        fillIterableNodes(root.right, iterableNodes);
     }
 }
