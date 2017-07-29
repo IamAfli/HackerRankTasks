@@ -21,15 +21,11 @@ public class Solution {
     }
 
     static double calculateMedian(int[] numbers, int size) {
-        int[] tmp = Arrays.copyOf(numbers, size);
+        Arrays.sort(numbers, 0, size);
 
-        Arrays.sort(tmp);
-
-        double result = tmp.length % 2 == 1 ?
-                tmp[tmp.length / 2] :
-                (tmp[tmp.length / 2 - 1] + tmp[tmp.length / 2]) / 2.0;
-
-        System.arraycopy(tmp, 0, numbers, 0, tmp.length);
+        double result = size % 2 == 1 ?
+                numbers[size / 2] :
+                (numbers[size / 2 - 1] + numbers[size / 2]) / 2.0;
 
         return result;
     }
