@@ -15,9 +15,8 @@ public class SolutionTest {
         double[] expectedResult = {12, 8, 5, 4.5, 5, 6};
 
         for (int i = 0; i < array.length; i++) {
-            double result = Solution.calculateMedian(
-                    Arrays.copyOf(array, i+1),
-                    i+1);
+            Solution.addNumber(array[i]);
+            double result = Solution.calculateMedian();
 
             assertThat(result, is(expectedResult[i]));
         }

@@ -1,32 +1,53 @@
 package com.epam.hakerrank.t08;
 
-import java.util.Arrays;
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Solution {
+    private static Queue<Integer> low = new PriorityQueue<>(Comparator.reverseOrder());
+    private static Queue<Integer> high = new PriorityQueue<>();
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
         int listSize = in.nextInt();
-        int[] numbers = new int[listSize];
 
         for (int i = 0; i < listSize; i++) {
-            numbers[i] = in.nextInt();
+            int candidate = in.nextInt();
 
-            double median = calculateMedian(numbers, i + 1);
+            addNumber(candidate);
+
+            double median = calculateMedian();
 
             System.out.format("%.1f%n", median);
         }
     }
 
-    static double calculateMedian(int[] numbers, int size) {
-        Arrays.sort(numbers, 0, size);
+    static void addNumber(int candidate) {
+        if (low.size() <= high.size()){
+            low.add(candidate);
+        } else {
+            high.add(candidate);
+        }
 
-        double result = size % 2 == 1 ?
-                numbers[size / 2] :
-                (numbers[size / 2 - 1] + numbers[size / 2]) / 2.0;
+        balanceQueues();
+    }
 
-        return result;
+    private static void balanceQueues() {
+        while(!low.isEmpty() && !high.isEmpty() && low.peek() > high.peek()) {
+            int lowHead= low.poll();
+            int highHead = high.poll();
+            low.add(highHead);
+            high.add(lowHead);
+        }
+    }
+
+    static double calculateMedian() {
+        return low.size() == high.size() ?
+                (low.peek() + high.peek()) / 2.0
+                : low.peek();
     }
 }
