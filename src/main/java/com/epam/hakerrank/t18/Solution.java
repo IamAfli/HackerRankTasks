@@ -10,6 +10,13 @@ public class Solution {
         int numberOfStairs = in.nextInt();
         for(int i = 0; i < numberOfStairs; i++){
             int n = in.nextInt();
+
+            int result = findPossibleVariants(n);
+            System.out.println(result);
         }
+    }
+
+    static int findPossibleVariants(int n) {
+        throw new UnsupportedOperationException();
     }
 }
