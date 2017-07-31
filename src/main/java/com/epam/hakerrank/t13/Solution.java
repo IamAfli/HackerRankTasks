@@ -16,6 +16,13 @@ public class Solution {
             for (int j = 0; j < numberOfFlavors; j++) {
                 flavors[j] = in.nextInt();
             }
+
+            int[] result = findFlavors(money, flavors);
+            System.out.format("%d %d%n", result[0], result[1]);
         }
+    }
+
+    static int[] findFlavors(int money, int[] flavors) {
+        throw new UnsupportedOperationException();
     }
 }
