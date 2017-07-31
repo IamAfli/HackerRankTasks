@@ -23,6 +23,18 @@ public class Solution {
     }
 
     static int[] findFlavors(int money, int[] flavors) {
-        throw new UnsupportedOperationException();
+        int[] result = new int[2];
+
+        for (int i = 0; i < flavors.length - 1; i++) {
+            for (int j = i + 1; j < flavors.length; j++) {
+                if (flavors[i] + flavors[j] == money) {
+                    result[0] = i + 1;
+                    result[1] = j + 1;
+                    return result;
+                }
+            }
+        }
+
+        return result;
     }
 }
