@@ -6,8 +6,16 @@ public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int p = in.nextInt();
-        for(int a0 = 0; a0 < p; a0++){
+        for(int i = 0; i < p; i++){
             int n = in.nextInt();
+
+            boolean result = isPrime(n);
+
+            System.out.println(result ? "Prime" : "Not Prime");
         }
+    }
+
+    static boolean isPrime(int n) {
+        throw new UnsupportedOperationException();
     }
 }
