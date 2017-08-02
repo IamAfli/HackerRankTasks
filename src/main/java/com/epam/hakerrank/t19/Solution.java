@@ -20,6 +20,15 @@ public class Solution {
     }
 
     static int possibilitiesNumber(int dollars, int[] coins) {
-        throw new UnsupportedOperationException();
+        int[] DP = new int[dollars + 1];
+        DP[0] = 1;
+
+        for (int coin : coins) {
+            for (int j = coin; j < DP.length; j++) {
+                DP[j] += DP[j - coin];
+            }
+        }
+
+        return DP[dollars];
     }
 }
