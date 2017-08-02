@@ -14,5 +14,12 @@ public class Solution {
         for (int i = 0; i < coinVariety; i++) {
             coins[i] = in.nextInt();
         }
+
+        int result = possibilitiesNumber(dollars, coins);
+        System.out.println(result);
+    }
+
+    static int possibilitiesNumber(int dollars, int[] coins) {
+        throw new UnsupportedOperationException();
     }
 }
