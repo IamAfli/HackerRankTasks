@@ -1,10 +1,13 @@
 package com.epam.hakerrank.t15;
 
+import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Solution {
+
+    private static final int EDGE_LENGTH = 6;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -28,19 +31,6 @@ public class Solution {
         sc.close();
     }
 
-    static void calculateDistances(Node startNode) {
-
-    }
-
-    private static void printResult(Node[] nodes, int startNode) {
-        for (int i = 0; i < nodes.length; i++) {
-            if (startNode - 1 != i) {
-                System.out.format("%d ", nodes[i].distance);
-            }
-        }
-        System.out.println();
-    }
-
     private static void connectNodes(Node[] nodes, int numberOfEdges, Scanner sc) {
         for (int i = 0; i < numberOfEdges; i++) {
             int node1 = sc.nextInt();
@@ -58,6 +48,31 @@ public class Solution {
         }
 
         return nodes;
+    }
+
+    static void calculateDistances(Node startNode) {
+        ArrayDeque<Node> deque = new ArrayDeque<>();
+
+        startNode.distance = 0;
+        deque.add(startNode);
+        while (!deque.isEmpty()) {
+            Node currentNode = deque.remove();
+            for (Node connectedNode : currentNode.connectedNodes) {
+                if (connectedNode.distance == -1){
+                    connectedNode.distance = currentNode.distance + EDGE_LENGTH;
+                    deque.add(connectedNode);
+                }
+            }
+        }
+    }
+
+    private static void printResult(Node[] nodes, int startNode) {
+        for (int i = 0; i < nodes.length; i++) {
+            if (startNode - 1 != i) {
+                System.out.format("%d ", nodes[i].distance);
+            }
+        }
+        System.out.println();
     }
 
     static class Node {

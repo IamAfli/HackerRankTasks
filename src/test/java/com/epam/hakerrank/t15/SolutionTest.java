@@ -18,9 +18,7 @@ public class SolutionTest {
         node1.addConnectedNodes(node2);
         node1.addConnectedNodes(node3);
 
-        int startNode = 1;
-
-        Solution.calculateDistances(startNode);
+        Solution.calculateDistances(node1);
 
         int[] result = {node2.distance, node3.distance, node4.distance};
         int[] expected = {6, 6, -1};
@@ -38,7 +36,7 @@ public class SolutionTest {
 
         int startNode = 2;
 
-        Solution.calculateDistances(startNode);
+        Solution.calculateDistances(node2);
 
         int[] result = {node1.distance, node3.distance};
         int[] expected = {-1, 6};
