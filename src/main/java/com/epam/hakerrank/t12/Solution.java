@@ -4,22 +4,47 @@ import java.util.Scanner;
 
 public class Solution {
 
-    static long countInversions(int[] arr) {
-        long result = 0;
+    static long countInversions(int[] array) {
+        int[] arrayCopy = array.clone();
+        return countInversions(array, 0, array.length - 1, arrayCopy);
+    }
 
-        for (int i = 0; i < arr.length - 1; i++) {
-            if (arr[i + 1] < arr[i]) {
-                int tmp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = tmp;
+    private static long countInversions(int[] array, int startInclusive, int endExclusive, int[] arrayCopy) {
+        if (startInclusive >= endExclusive) {
+            return 0;
+        }
 
-                result++;
+        int mid = startInclusive + (endExclusive - startInclusive) / 2;
 
-                result += countInversions(arr);
+        long count = 0;
+        count += countInversions(arrayCopy, startInclusive, mid, array);
+        count += countInversions(arrayCopy, mid + 1, endExclusive, array);
+        count += merge(array, startInclusive, mid, endExclusive, arrayCopy);
+
+        return count;
+    }
+
+    private static long merge(int[] array, int startInclusive, int mid, int endExclusive, int[] arrayCopy) {
+        long count = 0;
+
+        int i = startInclusive;
+        int j = mid + 1;
+        int k = startInclusive;
+
+        while (i <= mid || j <= endExclusive) {
+            if (i > mid) {
+                array[k++] = arrayCopy[j++];
+            } else if (j > endExclusive) {
+                array[k++] = arrayCopy[i++];
+            } else if (arrayCopy[i] <= arrayCopy[j]) {
+                array[k++] = arrayCopy[i++];
+            } else {
+                array[k++] = arrayCopy[j++];
+                count += mid + 1 - i;
             }
         }
 
-        return result;
+        return count;
     }
 
     public static void main(String[] args) {
