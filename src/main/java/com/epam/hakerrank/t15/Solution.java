@@ -28,7 +28,7 @@ public class Solution {
         sc.close();
     }
 
-    private static void calculateDistances(int startNode) {
+    static void calculateDistances(int startNode) {
         // TODO: 03/08/17
     }
 
@@ -64,7 +64,7 @@ public class Solution {
 
         private int nodeName;
         private Set<Node> connectedNodes;
-        private int distance;
+        int distance;
 
         public Node(int nodeName) {
             this.nodeName = nodeName;
