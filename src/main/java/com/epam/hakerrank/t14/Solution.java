@@ -16,5 +16,13 @@ public class Solution {
                 grid[i][j] = in.nextInt();
             }
         }
+
+        int result = calculateBiggestRegionSize(grid);
+
+        System.out.println(result);
+    }
+
+    static int calculateBiggestRegionSize(int[][] grid) {
+        throw new UnsupportedOperationException();
     }
 }
