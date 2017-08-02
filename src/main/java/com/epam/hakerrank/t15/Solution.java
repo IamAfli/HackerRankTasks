@@ -20,7 +20,7 @@ public class Solution {
             connectNodes(nodes, numberOfEdges, sc);
 
             int startNode = sc.nextInt();
-            calculateDistances(startNode);
+            calculateDistances(nodes[startNode - 1]);
 
             printResult(nodes, startNode);
         }
@@ -28,8 +28,8 @@ public class Solution {
         sc.close();
     }
 
-    static void calculateDistances(int startNode) {
-        // TODO: 03/08/17
+    static void calculateDistances(Node startNode) {
+
     }
 
     private static void printResult(Node[] nodes, int startNode) {
