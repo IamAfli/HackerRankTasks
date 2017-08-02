@@ -15,12 +15,12 @@ public class Solution {
             coins[i] = in.nextInt();
         }
 
-        int result = possibilitiesNumber(dollars, coins);
+        long result = possibilitiesNumber(dollars, coins);
         System.out.println(result);
     }
 
-    static int possibilitiesNumber(int dollars, int[] coins) {
-        int[] DP = new int[dollars + 1];
+    static long possibilitiesNumber(int dollars, int[] coins) {
+        long[] DP = new long[dollars + 1];
         DP[0] = 1;
 
         for (int coin : coins) {

@@ -12,8 +12,8 @@ public class SolutionTest {
         int dollars = 4;
         int[] coins = {1, 2, 3};
 
-        int result = Solution.possibilitiesNumber(dollars, coins);
-        int expected = 4;
+        long result = Solution.possibilitiesNumber(dollars, coins);
+        long expected = 4;
 
         assertThat(result, is(expected));
     }
@@ -23,8 +23,8 @@ public class SolutionTest {
         int dollars = 10;
         int[] coins = {2,5,3,6};
 
-        int result = Solution.possibilitiesNumber(dollars, coins);
-        int expected = 5;
+        long result = Solution.possibilitiesNumber(dollars, coins);
+        long expected = 5;
 
         assertThat(result, is(expected));
     }
