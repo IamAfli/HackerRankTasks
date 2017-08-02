@@ -23,6 +23,36 @@ public class Solution {
     }
 
     static int calculateBiggestRegionSize(int[][] grid) {
-        throw new UnsupportedOperationException();
+        int biggestRegion = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                biggestRegion = Math.max(biggestRegion, checkNeighbourCells(grid, i, j));
+            }
+        }
+
+        return biggestRegion;
+    }
+
+    private static int checkNeighbourCells(int[][] grid, int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length) {
+            return 0;
+        }
+
+        if (grid[i][j] == 0) {
+            return 0;
+        }
+
+        int count = grid[i][j]--;
+        count += checkNeighbourCells(grid, i - 1, j - 1);
+        count += checkNeighbourCells(grid, i - 1, j);
+        count += checkNeighbourCells(grid, i - 1, j + 1);
+        count += checkNeighbourCells(grid, i, j - 1);
+        count += checkNeighbourCells(grid, i, j + 1);
+        count += checkNeighbourCells(grid, i + 1, j - 1);
+        count += checkNeighbourCells(grid, i + 1, j);
+        count += checkNeighbourCells(grid, i + 1, j + 1);
+
+        return count;
     }
 }
