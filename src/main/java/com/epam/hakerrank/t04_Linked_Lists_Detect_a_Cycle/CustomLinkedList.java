@@ -30,27 +30,23 @@ public class CustomLinkedList {
         public void setNext(Node next) {
             this.next = next;
         }
-
-        @Override
-        public int hashCode() {
-            return data;
-        }
     }
 
     public boolean hasCycle(Node head) {
-        Set<Node> passedNodes = new HashSet<>();
+        Node oneStepNode = head;
+        Node twoStepNode = head;
 
-        Node current = head;
+        while (true){
+            if (oneStepNode == null || twoStepNode == null || twoStepNode.next == null){
+                return false;
+            }
 
-        while (current != null) {
-            if (!passedNodes.contains(current)) {
-                passedNodes.add(current);
-                current = current.next;
-            } else {
+            oneStepNode = oneStepNode.next;
+            twoStepNode = twoStepNode.next.next;
+
+            if (oneStepNode == twoStepNode){
                 return true;
             }
         }
-
-        return false;
     }
 }
