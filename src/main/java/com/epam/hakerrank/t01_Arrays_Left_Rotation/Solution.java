@@ -1,5 +1,6 @@
 package com.epam.hakerrank.t01_Arrays_Left_Rotation;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -33,15 +34,9 @@ public class Solution {
             );
         }
 
-        for (int i = 0; i < arrayShift; i++) {
-            shiftLeftByOne(array);
-        }
-    }
-
-    private void shiftLeftByOne(int[] array) {
-        int tmp = array[0];
-        System.arraycopy(array, 1, array, 0, array.length - 1);
-        array[array.length - 1] = tmp;
+        int[] arrayLeftPart = Arrays.copyOf(array, arrayShift);
+        System.arraycopy(array, arrayShift, array, 0, array.length - arrayShift);
+        System.arraycopy(arrayLeftPart, 0, array, array.length - arrayShift, arrayLeftPart.length);
     }
 
     private static void printArray(int[] array) {
